@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style (1).css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="keyboard-container">
+        <textarea id="id" class="text-area" rows="3"></textarea>
+        <div class="main-conatainer">
+            <div class="flex-container1">
+                <div class="key key1" style="flex-basis: 50px" onclick="fun('`')">~<br>`</div>
+                <div class="key" onclick="fun('1')">!
+                    <br> 1
+                </div>
+                <div class="key" onclick="fun('2', '@')">@<br>2</div>
+                <div class="key" onclick="fun('3','#')">#<br>3</div>
+                <div class="key" onclick="fun('4','$')">$<br>4</div>
+                <div class="key" onclick="fun('5','%')">%<br>5</div>
+                <div class="key" onclick="fun('6','^')">^<br>6</div>
+                <div class="key" onclick="fun('7','&')">&<br>7</div>
+                <div class="key" onclick="fun('8','*')">*<br>8</div>
+                <div class="key" onclick="fun('9','(')">(<br>9</div>
+                <div class="key" onclick="fun('0',')')">)<br>0</div>
+                <div class="key" onclick="fun('-','_')">_<br>-</div>
+                <div class="key" onclick="fun('=','+')">+<br>=</div>
+                <div class="key key2" onclick="backSpace()"><i class="fa-solid fa-delete-left"></i></div>
+            </div>
+
+            <!--secod row-->
+            <div class="flex-container">
+                <div class="key" onclick="fun('Tab')">Tab</div>
+                <div class="key" onclick="fun('Q')">Q</div>
+                <div class="key" onclick="fun('W')">W</div>
+                <div class="key" onclick="fun('E')">E</div>
+                <div class="key" onclick="fun('R')">R</div>
+                <div class="key" onclick="fun('T')">T</div>
+                <div class="key" onclick="fun('Y')">Y</div>
+                <div class="key" onclick="fun('U')">U</div>
+                <div class="key" onclick="fun('I')">I</div>
+                <div class="key" onclick="fun('O')">O</div>
+                <div class="key" onclick="fun('P')">P</div>
+                <div class="key" onclick="fun('[','{')">{<br>[</div>
+                <div class="key" onclick="fun(']','}')">}<br>]</div>
+                <div class="key" onclick="fun('\\,/')">|<br>\</div>
+            </div>
+
+            <!--THIRD ROW-->
+
+            <div class="flex-container">
+                <div class="key key3" onclick="smallLetter();">Caps Lock</div>
+                <div class="key" onclick="fun('A')">A</div>
+                <div class="key" onclick="fun('S')">S</div>
+                <div class="key" onclick="fun('D')">D</div>
+                <div class="key" onclick="fun('F')">F</div>
+                <div class="key" onclick="fun('G')">G</div>
+                <div class="key" onclick="fun('H')">H</div>
+                <div class="key" onclick="fun('J')">J</div>
+                <div class="key" onclick="fun('K')">K</div>
+                <div class="key" onclick="fun('L')">L</div>
+                <div class="key" onclick="fun(';',':')">:<br>;</div>
+                <div class="key" onclick="fun(`'`,``);">"<br>'</div>
+                <div class="key key5" onclick="nextLine()">Enter</div>
+            </div>
+
+
+
+            <!--FOURSTH ROW-->
+            <div class="flex-container">
+                <div class="key key4" onclick="shift()">Shift</div>
+                <div class="key" onclick="fun('Z')">Z</div>
+                <div class="key" onclick="fun('X')">X</div>
+                <div class="key" onclick="fun('C')">C</div>
+                <div class="key" onclick="fun('V')">V</div>
+                <div class="key" onclick="fun('B')">B</div>
+                <div class="key" onclick="fun('N')">N</div>
+                <div class="key" onclick="fun('M')">M</div>
+                <div class="key" onclick="fun('<')">
+                    <<br>,
+                </div>
+                <div class="key" onclick="fun('>','.')">><br>.</div>
+                <div class="key" onclick="fun('/','?')">?<br>/</div>
+                <div class="key key4" onclick="shift()">Shift</div>
+            </div>
+
+            <!--Fifth Row-->
+            <div class="flex-container2">
+                <div class="key" onclick="fun('Ctrl')">Ctrl</div>
+                <div class="key" onclick="fun('Alt')">Alt</div>
+                <div class="key key6" onclick="Space()">Space</div>
+                <!-- Space key should add a space -->
+                <div class="key" onclick="fun('Ctrl')">Ctrl</div>
+                <div class="key" onclick="fun('Alt')">Alt</div>
+                <div class="key" onclick="fun('<')">
+                    < </div>
+                        <div class="key" onclick="fun('>')">></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+
+        function Space() {
+            let textArea = document.getElementsByClassName('text-area')[0];//textarea doent return the first value thats why we are using [0] for getting first text;
+            textArea.value += ' ';
+        }
+
+        let Caps = true;
+        let isShift = false;
+
+        function smallLetter() {
+            Caps = !Caps;
+
+        }
+        let fun = (key1, key2) => {
+
+            let textArea = document.getElementsByClassName('text-area')[0];
+            if (Caps) {
+                key1 = key1.toUpperCase();
+            } else {
+                key1 = key1.toLowerCase();
+            }
+
+            if (isShift && key2 != undefined) {
+                textArea.value += key2;
+                shift();
+
+            } else {
+                textArea.value += key1;
+            }
+
+        };
+
+
+        function nextLine() {
+            let textArea = document.getElementsByClassName('text-area')[0];
+            textArea.value += '\n';
+        };
+
+
+        function backSpace() {
+            let textArea = document.getElementsByClassName('text-area')[0];
+            textArea.value = textArea.value.slice(0, -1);
+
+        };
+        function shift() {
+            isShift = !isShift;
+        }
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+* {
+    margin: 0%;
+    padding: 0%;
+}
+
+body {
+    text-align: center;
+    background-color:whitesmoke;
+    font-family: serif;
+    
+}
+
+.keyboard-container {
+    height: 720px;
+    margin-top: 7%;
+    font-family: serif;
+}
+
+.text-area {
+    height: 100px;
+    width: 70%;
+    border-radius: 10px;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+.flex-container{
+    display: flex;
+    background-color: black;
+    color: aliceblue;
+    padding: 5px;
+    justify-content: center;
+    width: 70%;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    margin: auto;
+}
+.flex-container1{
+    display: flex;
+    background-color: black;
+    color: aliceblue;
+    padding: 5px;
+    justify-content: center;
+    width: 70%;
+    border-radius: 10px;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    margin: auto;
+    border-radius: 8px 8px 0px 0px;
+}
+.flex-container2{
+    display: flex;
+    background-color: black;
+    color: aliceblue;
+    padding: 5px;
+    justify-content: center;
+    width: 70%;
+    border-radius: 0px 0px 8px 8px;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    margin: auto;
+}
+.key {
+    height: 80px;
+    width: 80px;
+    border: 1px solid black;
+    font-size: 25px;
+    background-color: #6C757D;
+    justify-content: center;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 40px;
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+
+}
+
+.key:hover {
+    background-color: #4C585B;
+    transition: 0.1s;
+    color: black;
+    }
+    .key2{
+        flex-basis: 110px;
+    }
+.key3{
+    height: 80px;
+    width: 80px;
+    border: 1px solid black;
+    font-size: 25px;
+    background-color: blue;
+    justify-content: center;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 40px;
+    border: 1px solid black;
+    flex-basis: 120px;
+}
+.key4{
+     flex-basis: 160px;
+}
+.key::after:hover {
+    background-color:#F4EDD3;
+    transition: 0.3s;
+    color: black;
+    border-color: white;
+}
+.key5{
+    flex-basis: 120px;
+}
+.key6{
+    flex-basis: 690px;
+}

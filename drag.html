@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>drag and Drop</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="main">
+
+        <h1 class="header">10 Richest People</h1>
+        <p class="heading">Drag and Drop the items in to their correspending spot</p>
+        <div class="container">
+            <ul id="draggable-list">
+                <li class="draggable1">
+                    <span class="number">1</span>
+                    <div class="draggable" draggable="true">
+                        <span class="name">Jeff Bezos</span>
+                        <i class="fa-solid fa-equals"></i>
+                    </div>
+                </li>
+                <li class="draggable1">
+                    <span class="number">2</span>
+                    <div class="draggable" draggable="true">
+                        <span class="name">Bill Gates</span>
+                        <i class="fa-solid fa-equals"></i>
+                    </div>
+                </li>
+                <li class="draggable1">
+                    <span class="number">3</span>
+                    <div class="draggable" draggable="true">
+                        <span class="name">Warren Buffett</span>
+                        <i class="fa-solid fa-equals"></i>
+                    </div>
+                </li>
+                <li class="draggable1">
+                    <span class="number">4</span>
+                    <div class="draggable" draggable="true">
+                        <span class="name">Bernard Arnault</span>
+                        <i class="fa-solid fa-equals"></i>
+                    </div>
+                </li>
+                <li class="draggable1">
+                    <span class="number">5</span>
+                    <div class="draggable" draggable="true">
+                        <span class="name">Carlos Slim Helú</span>
+                        <i class="fa-solid fa-equals"></i>
+                    </div>
+                </li>
+                <li class="draggable1">
+
+                    <span class="number">6</span>
+                    <div class="draggable" draggable="true">
+                        <span class="name">Amancio Ortega</span>
+                        <i class="fa-solid fa-equals"></i>
+                    </div>
+                </li>
+                <li class="draggable1">
+
+                    <span class="number">7</span>
+                    <div class="draggable" draggable="true">
+                        <span class="name">Larry Ellison</span>
+                        <i class="fa-solid fa-equals"></i>
+                    </div>
+                </li>
+                <li class="draggable1">
+                    <span class="number">8</span>
+                    <div class="draggable" draggable="true">
+                        <span class="name">Mark Zuckerberg</span>
+                        <i class="fa-solid fa-equals"></i>
+                    </div>
+                </li>
+                <li class="draggable1">
+                    <span class="number">9</span>
+                    <div class="draggable" draggable="true">
+                        <span class="name">Michael Bloomberg</span>
+                        <i class="fa-solid fa-equals"></i>
+                    </div>
+                </li>
+                <li class="draggable1">
+                    <span class="number">10</span>
+                    <div class="draggable" draggable="true">
+                        <span class="name">Larry Page</span>
+                        <i class="fa-solid fa-equals"></i>
+                    </div>
+                </li>
+
+            </ul>
+            <button class="check-btn" id="checkBtn">Check order<i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+        <script>
+
+            const names = Array.from(document.querySelectorAll('.draggable'));// convert node listin to array//
+            const checkBtn = document.getElementById("checkBtn");
+            const icons = document.querySelector('.fa-solid .fa-equals');
+
+            
+            
+                const correctOrder = [
+                    'Jeff Bezos'.trim(),
+                    'Bill Gates'.trim(),
+                    'Warren Buffett'.trim(),
+                    'Bernard Arnault'.trim(),
+                    'Carlos Slim Helú'.trim(),
+                    'Amancio Ortega'.trim(),
+                    'Larry Ellison'.trim(),
+                    'Mark Zuckerberg'.trim(),
+                    'Michael Bloomberg'.trim(),
+                    'Larry Page'.trim()
+                ];
+                function checkOrder() {
+                const currentOrder = names.map(name => name.textContent.trim());//This is an array method that creates a new array by applying a function to each element in the original array (names). It returns the results of applying that function to each element.//
+                names.forEach((name, index) => { //name paramter represnt the each element in the names and index represnt the position of the elemenet.// 
+                    if (currentOrder[index] === correctOrder[index]) {
+                        name.style.color = "green";
+                    } else {
+                        name.style.color = "red";
+                    }
+                })}
+            
+
+
+            let draggedItem = null; // drageditem initally is null because no item is draged yet.  draged item is hold the the refrence of the items that has been draged.//
+
+            names.forEach(name => {
+                name.addEventListener('dragstart', (e) => {
+                    draggedItem = e.target;  //e.target refer the the element that has been draged .target element  are stored in to dragedItem//
+                    console.log(e);
+
+                });
+
+                name.addEventListener('dragover', (e) => {    //dragover event is fire when an element is over is another element
+                    e.preventDefault(); //(by default behaviour doent allow to drag the element thts why we use prevent default method) prevenet default behaviour  allowing to draged the element without using prevenet default you can not draged the element.
+                    console.log("Dragover prevented default action");
+                });
+
+                name.addEventListener('drop', (e) => { // drop event is fire when the draged item is droped in another element .
+                    e.preventDefault();//ensure the default Drop behaviour is preveneted 
+                    if (draggedItem !== e.target) {// this condition is ensure that the prevent ewaping is not itself
+                        
+                        let closest_drag_div = e.target.closest(".draggable"); 
+                        let dropNameElement = closest_drag_div.getElementsByClassName("name")
+                        console.log(dropNameElement[0].innerHTML)
+
+                        console.log(draggedItem)
+                        let dragNameElement = draggedItem.getElementsByClassName("name")
+                        console.log(dragNameElement[0].innerHTML)
+
+                        let tempName = dropNameElement[0].innerHTML;
+                        dropNameElement[0].innerHTML = dragNameElement[0].innerHTML
+                        dragNameElement[0].innerHTML = tempName;
+                        checkOrder(); 
+                        // let tempHTML = draggedItem.innerHTML.trim();
+                        // draggedItem.innerHTML = e.target.innerHTML.trim();
+                        // e.target.innerHTML = tempHTML;
+                    }
+
+                });
+                name.addEventListener('dragend', (e) => {
+                    draggedItem = null;  // this event is fire when draging is completed and and rest the dragedItem is null
+                });
+            });
+
+
+
+        </script>
+
+
+
+
+
+
+</body>
+
+</html>
